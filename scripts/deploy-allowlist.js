@@ -1,24 +1,18 @@
-const hre = require("hardhat");
+// scripts/deploy-allowlist.js
+
+const { ethers } = require("hardhat");
 
 async function main() {
-  // Deploy SBMR Token
-  const Token = await hre.ethers.getContractFactory("SoonerBoomerToken");
-  const token = await Token.deploy();
-  await token.waitForDeployment(); // ✅ the FIX
-  const tokenAddress = await token.getAddress();
-  console.log("✅ SBMR Token deployed to:", tokenAddress);
+  const TOKEN_ADDRESS = "0x19F58FdB268ae8fd4aEF1A79BA006A00BCBF3c4E"; // Your existing SoonerBoomerToken
 
-  // Deploy AllowlistClaim Contract
-  const AllowList = await hre.ethers.getContractFactory("AllowlistClaim");
-  const allowList = await AllowList.deploy(tokenAddress);
-  await allowList.waitForDeployment(); // ✅ the FIX
-  const allowListAddress = await allowList.getAddress();
-  console.log("✅ AllowlistClaim deployed to:", allowListAddress);
+  const AllowlistClaim = await ethers.getContractFactory("AllowlistClaim");
+  const allowlistClaim = await AllowlistClaim.deploy(TOKEN_ADDRESS);
+
+  await allowlistClaim.waitForDeployment();
+  console.log(`✅ AllowlistClaim deployed to: ${allowlistClaim.target}`);
 }
 
-main().catch((error) => {
-  console.error(error);
+main().catch((err) => {
+  console.error(err);
   process.exitCode = 1;
 });
-
-
