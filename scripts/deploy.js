@@ -3,9 +3,10 @@ const hre = require("hardhat");
 async function main() {
   const SoonerBoomerToken = await hre.ethers.getContractFactory("SoonerBoomerToken");
   const sbmr = await SoonerBoomerToken.deploy();
-  await sbmr.deployed();
 
-  console.log(`SoonerBoomerToken deployed to: ${sbmr.address}`);
+  // No need for await sbmr.deployed(); in ethers v6
+
+  console.log(`✅ SoonerBoomerToken deployed to: ${await sbmr.getAddress()}`);
 }
 
 main().catch((error) => {

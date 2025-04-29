@@ -4,16 +4,15 @@ import { ethers } from 'ethers';
 import './index.css';
 import logo from './assets/token-logo.png';
 
-const TOKEN_ADDRESS = "0x8A371CaAe8f19bf3EB7AfDD351B5FD1Eaf178C05";
-const CLAIM_CONTRACT_ADDRESS = "0x553f48dC19eecFAAfF94C89B975B854441843223";
+const TOKEN_ADDRESS = "0x19F58FdB268ae8fd4aEF1A79BA006A00BCBF3c4E";
+const CLAIM_CONTRACT_ADDRESS = "0x514D5613B7927FC8F27Bc353602e335C203868a1";
 
-const abi = {
-  claim: [
-    "function claim() external",
-    "function claimed(address) view returns (bool)",
-    "function allowlist(address) view returns (bool)"
-  ]
-};
+
+const abi = [
+  "function claim() external",
+  "function allowlist(address) view returns (bool)"
+];
+
 
 function App() {
   const [wallet, setWallet] = useState("");
@@ -23,17 +22,24 @@ function App() {
   const [useCustomAddress, setUseCustomAddress] = useState(false);
 
   useEffect(() => {
-    if (window.ethereum) {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
-      const claimContract = new ethers.Contract(
-        CLAIM_CONTRACT_ADDRESS,
-        abi.claim,
-        signer
-      );
-      setContract(claimContract);
-    }
+    const setupContract = async () => {
+      if (window.ethereum) {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const claimContract = new ethers.Contract(
+  CLAIM_CONTRACT_ADDRESS,
+  abi,
+  signer
+);
+
+        setContract(claimContract);
+      }
+    };
+  
+    setupContract(); // Call the async function
   }, []);
+  
+  
 
   const connectWallet = async () => {
     if (!window.ethereum) return alert("MetaMask not found!");
@@ -43,28 +49,56 @@ function App() {
   };
 
   const checkEligibility = async () => {
-    if (!contract) return;
+    console.log("Checking eligibility...");
+    if (!contract) {
+      console.log("❌ Contract not found");
+      return;
+    }
+  
     const targetAddress = useCustomAddress ? customAddress : wallet;
-    if (!ethers.isAddress(targetAddress)) return setStatus("❌ Invalid address format.");
-
-    const isEligible = await contract.allowlist(targetAddress);
-    const alreadyClaimed = await contract.claimed(targetAddress);
-    if (alreadyClaimed) setStatus("✅ This address has already claimed tokens.");
-    else if (isEligible) setStatus("🎉 This address is eligible to claim!");
-    else setStatus("❌ This address is not on the allowlist.");
-  };
-
-  const claimTokens = async () => {
-    if (!contract || !wallet) return;
+    console.log("Address being checked:", targetAddress);
+  
     try {
-      const tx = await contract.claim();
-      await tx.wait();
-      setStatus("🎊 Successfully claimed SBMR tokens!");
-    } catch (err) {
-      console.error(err);
-      setStatus("❌ Claim failed. You may not be eligible or already claimed.");
+      const isEligible = await contract.allowlist(targetAddress);
+  
+      console.log("Eligible?", isEligible);
+  
+      if (!isEligible) {
+        setStatus("❌ Not eligible to claim.");
+      } else {
+        setStatus("✅ Eligible! You can claim now!");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("❌ Error checking eligibility.");
     }
   };
+  
+  
+  
+
+  const claimTokens = async () => {
+    console.log("Trying to claim...");
+    if (!contract) return;
+    try {
+      const tx = await contract.claim();
+      setStatus("⏳ Claiming tokens...");
+      await tx.wait();
+      console.log("✅ Claimed successfully!");
+  
+      setStatus(
+        `✅ Claimed! View Tx: https://sepolia.etherscan.io/tx/${tx.hash}`
+      );
+  
+      await checkEligibility(); // 🔥 Recheck after claiming
+    } catch (err) {
+      console.error("❌ Claim failed:", err);
+      setStatus("❌ Claim Failed. Please try again.");
+    }
+  };
+  
+  
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex items-center justify-center px-4 py-12">

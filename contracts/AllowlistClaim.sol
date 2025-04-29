@@ -7,7 +7,6 @@ contract AllowlistClaim {
     SoonerBoomerToken public token;
     address public owner;
     mapping(address => bool) public allowlist;
-    mapping(address => bool) public claimed;
 
     constructor(address _token) {
         token = SoonerBoomerToken(_token);
@@ -25,9 +24,7 @@ contract AllowlistClaim {
 
     function claim() external {
         require(allowlist[msg.sender], "Not eligible");
-        require(!claimed[msg.sender], "Already claimed");
-
-        claimed[msg.sender] = true;
-        token.transfer(msg.sender, 100 * 10 ** token.decimals());
+        // REMOVE claimed[msg.sender] checks
+        token.transfer(msg.sender, 1000 * 10**18);  // Transfer 1000 tokens
     }
 }
