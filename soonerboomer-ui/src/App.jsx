@@ -64,13 +64,13 @@ function App() {
       console.log("Eligible?", isEligible);
   
       if (!isEligible) {
-        setStatus("❌ Not eligible to claim.");
+        setStatus("Not eligible to claim.");
       } else {
         setStatus("✅ Eligible! You can claim now!");
       }
     } catch (error) {
       console.error(error);
-      setStatus("❌ Error checking eligibility.");
+      setStatus(" Error checking eligibility.");
     }
   };
   
@@ -92,8 +92,8 @@ function App() {
   
       await checkEligibility(); // 🔥 Recheck after claiming
     } catch (err) {
-      console.error("❌ Claim failed:", err);
-      setStatus("❌ Claim Failed. Please try again.");
+      console.error(" Claim failed:", err);
+      setStatus(" Claim Failed. Please try again.");
     }
   };
   
