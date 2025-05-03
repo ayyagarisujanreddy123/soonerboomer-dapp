@@ -5,21 +5,19 @@ import './index.css';
 import logo from './assets/token-logo.png';
 import proofs from './proofs.json';
 
-const TOKEN_ADDRESS = "0x19F58FdB268ae8fd4aEF1A79BA006A00BCBF3c4E";
-const ALLOWLIST_CONTRACT_ADDRESS = "0x514D5613B7927FC8F27Bc353602e335C203868a1";
-const MERKLE_CONTRACT_ADDRESS = "0x7edD1b58f191122a134EEAD162B992bA36808a81";
+// Components
+import WalletSection from './components/WalletSection';
+import EligibilityCheck from './components/EligibilityCheck';
+import ClaimButtons from './components/ClaimButtons';
+import StatusBanner from './components/StatusBanner';
 
-// ✅ Updated ABI with addToAllowlist
-const allowlistAbi = [
-  "function claim() external",
-  "function allowlist(address) view returns (bool)",
-  "function addToAllowlist(address) external"
-];
-
-const merkleAbi = [
-  "function claim(bytes32[] calldata proof) external",
-  "function claimed(address) view returns (bool)"
-];
+// Constants
+import {
+  ALLOWLIST_CONTRACT_ADDRESS,
+  MERKLE_CONTRACT_ADDRESS,
+  allowlistAbi,
+  merkleAbi,
+} from './constants/contracts';
 
 function App() {
   const [wallet, setWallet] = useState("");
@@ -147,73 +145,29 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex items-center justify-center px-4 py-12">
       <div className="bg-zinc-800/60 backdrop-blur-md border border-zinc-700 p-8 rounded-3xl shadow-xl w-full max-w-xl text-center space-y-6">
-
         <img src={logo} alt="SoonerBoomer Logo" className="w-28 h-28 mx-auto animate-spin-slow drop-shadow-md mb-4" />
         <h1 className="text-4xl font-black bg-gradient-to-r from-amber-400 via-red-500 to-fuchsia-500 text-transparent bg-clip-text animate-pulse">
           SoonerBoomer+
         </h1>
         <p className="text-gray-300">Claim your on-chain engagement rewards</p>
 
-        <button
-          onClick={connectWallet}
-          className="w-full bg-blue-700 hover:bg-blue-600 py-3 rounded-lg text-lg font-semibold mt-4"
-        >
-          {wallet ? "Wallet Connected" : "Connect Wallet"}
-        </button>
+        <WalletSection wallet={wallet} connectWallet={connectWallet} />
 
-        <div className="flex items-center justify-center gap-2 mt-4">
-          <input
-            type="checkbox"
-            checked={useCustomAddress}
-            onChange={() => setUseCustomAddress(!useCustomAddress)}
-          />
-          <label className="text-sm text-gray-400">Use custom address</label>
-        </div>
+        <EligibilityCheck
+          useCustomAddress={useCustomAddress}
+          setUseCustomAddress={setUseCustomAddress}
+          customAddress={customAddress}
+          setCustomAddress={setCustomAddress}
+          checkEligibility={checkEligibility}
+          addToAllowlist={addToAllowlist}
+        />
 
-        {useCustomAddress && (
-          <input
-            type="text"
-            value={customAddress}
-            onChange={(e) => setCustomAddress(e.target.value)}
-            placeholder="Enter 0x address..."
-            className="w-full px-4 py-3 mt-2 rounded-lg bg-zinc-900 border border-zinc-600 placeholder-zinc-500 text-white"
-          />
-        )}
+        <ClaimButtons
+          claimAllowlist={claimAllowlist}
+          claimMerkle={claimMerkle}
+        />
 
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-          <button
-            onClick={checkEligibility}
-            className="bg-yellow-600 hover:bg-yellow-500 px-6 py-2 rounded-lg font-medium"
-          >
-            Check Eligibility
-          </button>
-          <button
-            onClick={addToAllowlist}
-            className="bg-pink-700 hover:bg-pink-600 px-6 py-2 rounded-lg font-medium"
-          >
-            Add to Allowlist
-          </button>
-        </div>
-
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-          <button
-            onClick={claimAllowlist}
-            className="bg-purple-700 hover:bg-purple-600 px-6 py-2 rounded-lg font-medium"
-          >
-            Claim from Allowlist
-          </button>
-          <button
-            onClick={claimMerkle}
-            className="bg-green-600 hover:bg-green-500 px-6 py-2 rounded-lg font-medium"
-          >
-            Claim from Merkle
-          </button>
-        </div>
-
-        <div className="text-sm text-red-400 font-medium mt-4 min-h-[1.5rem]">
-          {status}
-        </div>
-
+        <StatusBanner status={status} />
       </div>
     </div>
   );
