@@ -2,7 +2,7 @@
 
 SoonerBoomer+ is a decentralized application (dApp) developed on the Ethereum Sepolia testnet that demonstrates secure, structured token distribution for university-level engagement systems. Inspired by the University of Oklahoma, it combines blockchain-based smart contracts with an interactive React-based frontend to simulate educational incentive mechanisms using ERC-20 tokens.
 
-## ✨ Key Features
+## Key Features
 
 * ERC-20 token: SoonerBoomer (SBMR) deployed on Sepolia
 * Two distribution methods:
@@ -15,7 +15,7 @@ SoonerBoomer+ is a decentralized application (dApp) developed on the Ethereum Se
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -72,7 +72,7 @@ npx hardhat run scripts/fund-merkle.js --network sepolia
 
 ---
 
-## 📄 Contracts
+## Contracts
 
 | Contract       | Address                                      | Description                          |
 | -------------- | -------------------------------------------- | ------------------------------------ |
@@ -82,7 +82,7 @@ npx hardhat run scripts/fund-merkle.js --network sepolia
 
 ---
 
-## 📈 Technologies Used
+## Technologies Used
 
 * Solidity + OpenZeppelin (ERC-20 base, MerkleProof)
 * Hardhat (development, testing, deployment)
@@ -96,7 +96,7 @@ npx hardhat run scripts/fund-merkle.js --network sepolia
 
 ---
 
-## 🔧 Frontend Instructions
+## Frontend Instructions
 
 ```bash
 cd soonerboomer-ui
@@ -116,26 +116,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 📊 Contributions
-
-* ✨ Sujan Reddy Ayyagari
-
-  * Smart contract design & implementation
-  * Hardhat deployment scripts and testing
-  * Token funding, backend logic, and documentation
-  * Final report, README, and presentation preparation
-
-* ✨ Surya
-
-  * React frontend development and styling
-  * UI for allowlist and Merkle claim flows
-  * Eligibility toggle, status UI, and UX testing
-  * Merkle tree integration and scripting
-  * MetaMask wallet integration with ethers.js
-
----
-
-## 📅 Future Work
+## Future Work
 
 * Add admin dashboard to manage allowlists via UI
 * Implement Chainlink oracle for dynamic claim criteria
@@ -145,7 +126,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 🔗 Useful Links
+## Useful Links
 
 * [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/)
 * [Hardhat Documentation](https://hardhat.org/docs)
@@ -156,7 +137,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 📕 License
+## License
 
 MIT License © 2025 Sujan Reddy Ayyagari
 
