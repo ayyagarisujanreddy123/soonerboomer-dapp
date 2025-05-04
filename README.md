@@ -122,16 +122,16 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
   * Smart contract design & implementation
   * Hardhat deployment scripts and testing
-  * Merkle tree integration and scripting
-   * MetaMask wallet integration with ethers.js
   * Token funding, backend logic, and documentation
   * Final report, README, and presentation preparation
 
 * ✨ Surya
 
   * React frontend development and styling
-   * UI for allowlist and Merkle claim flows
+  * UI for allowlist and Merkle claim flows
   * Eligibility toggle, status UI, and UX testing
+  * Merkle tree integration and scripting
+  * MetaMask wallet integration with ethers.js
 
 ---
 
