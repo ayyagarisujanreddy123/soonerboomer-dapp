@@ -160,14 +160,14 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 MIT License © 2025 Sujan Reddy Ayyagari
 
+---
+
 # presentation video link
 <https://drive.google.com/file/d/1Qf_8V-tbW9ojPP_HcqT-Cj_-uSuE17Nz/view?usp=drivesdk>
 
 ---
 
 ## Team
-
-MIT License © 2025 Sujan Reddy Ayyagari
 
 * Sujan Reddy Ayyagari - sujan.reddy.ayyagari-1@ou.edu
 * Surya Prabhav Gurram - surya.prabhav.gurram-1@ou.edu
