@@ -10,14 +10,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom right, #0f0f0f, #1f1f1f);
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+/* Flex center app wrapper */
+body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Prevent zoom on images */
+img {
+  user-select: none;
+  pointer-events: none;
 }
 
 /* Button Styling */
@@ -31,11 +46,12 @@ button {
   background-color: #4f46e5;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #6366f1;
+  transform: scale(1.03);
 }
 
 button:focus {
@@ -52,6 +68,12 @@ input[type="text"] {
   color: #e5e7eb;
   font-size: 1rem;
   width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #818cf8;
+  outline: none;
 }
 
 input[type="checkbox"] {
@@ -65,12 +87,14 @@ h1 {
   background: linear-gradient(to right, #facc15, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-align: center;
 }
 
 p {
   font-size: 1rem;
   color: #d1d5db;
   margin-top: 0.25rem;
+  text-align: center;
 }
 
 /* Logo Animation */
@@ -86,11 +110,38 @@ p {
     transform: rotate(360deg);
   }
 }
- 
+
 .logo {
   width: 20vw;
   max-width: 120px;
   height: auto;
   object-fit: contain;
   margin-bottom: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .logo {
+    width: 30vw;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.75em;
+  }
+
+  input[type="text"] {
+    font-size: 0.95rem;
+  }
+}
+
+/* Optional: minimal height for status */
+.status-banner {
+  min-height: 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 1rem;
 }

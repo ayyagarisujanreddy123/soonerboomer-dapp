@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import './index.css';
@@ -83,6 +82,11 @@ function App() {
       return;
     }
 
+    if (!ethers.isAddress(customAddress)) {
+      setStatus("❌ Invalid custom address.");
+      return;
+    }
+
     try {
       const tx = await allowlistContract.addToAllowlist(customAddress);
       setStatus("⏳ Adding to allowlist...");
@@ -90,7 +94,8 @@ function App() {
       setStatus(`✅ Added! View Tx: https://sepolia.etherscan.io/tx/${tx.hash}`);
     } catch (err) {
       console.error("❌ Failed to add to allowlist:", err);
-      setStatus("❌ Failed to add to allowlist.");
+      const reason = err?.error?.message || err?.reason || err?.message;
+      setStatus("❌ " + reason);
     }
   };
 
@@ -101,13 +106,23 @@ function App() {
     }
 
     try {
+      const isEligible = await allowlistContract.allowlist(wallet);
+      console.log("🧪 Allowlist eligibility:", isEligible);
+
+      if (!isEligible) {
+        setStatus("❌ You are not in the allowlist.");
+        return;
+      }
+
+      setStatus("⏳ Sending claim transaction...");
       const tx = await allowlistContract.claim();
-      setStatus("⏳ Claiming from allowlist...");
       await tx.wait();
+
       setStatus(`✅ Claimed from allowlist! View Tx: https://sepolia.etherscan.io/tx/${tx.hash}`);
     } catch (err) {
       console.error("❌ Allowlist claim failed:", err);
-      setStatus("❌ Allowlist claim failed.");
+      const errorMessage = err?.reason || err?.message || "Transaction failed";
+      setStatus("❌ Claim failed: " + errorMessage);
     }
   };
 
@@ -145,7 +160,12 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex items-center justify-center px-4 py-12">
       <div className="bg-zinc-800/60 backdrop-blur-md border border-zinc-700 p-8 rounded-3xl shadow-xl w-full max-w-xl text-center space-y-6">
-        <img src={logo} alt="SoonerBoomer Logo" className="w-28 h-28 mx-auto animate-spin-slow drop-shadow-md mb-4" />
+
+        <img
+          src={logo}
+          alt="SoonerBoomer Logo"
+          className="w-28 h-28 mx-auto animate-spin-slow drop-shadow-md mb-4 pointer-events-none select-none"
+        />
         <h1 className="text-4xl font-black bg-gradient-to-r from-amber-400 via-red-500 to-fuchsia-500 text-transparent bg-clip-text animate-pulse">
           SoonerBoomer+
         </h1>
@@ -166,6 +186,30 @@ function App() {
           claimAllowlist={claimAllowlist}
           claimMerkle={claimMerkle}
         />
+
+        {/* Debugging tool for developer use */}
+        <button
+          onClick={async () => {
+            if (!allowlistContract || !wallet) {
+              console.log("🔴 Contract or wallet not ready");
+              setStatus("❌ Contract or wallet not ready");
+              return;
+            }
+            try {
+              const isAllowlisted = await allowlistContract.allowlist(wallet);
+              const hasClaimed = await allowlistContract.claimed(wallet);
+              console.log("🧪 On Allowlist:", isAllowlisted);
+              console.log("🧪 Already Claimed:", hasClaimed);
+              setStatus(`🧪 Allowlist: ${isAllowlisted}, Claimed: ${hasClaimed}`);
+            } catch (e) {
+              console.error("❌ Debug check failed:", e);
+              setStatus("❌ Debug check failed");
+            }
+          }}
+          className="bg-orange-600 hover:bg-orange-500 px-6 py-2 rounded-lg font-medium"
+        >
+          🧪 Log Full Allowlist + Claim Status
+        </button>
 
         <StatusBanner status={status} />
       </div>
