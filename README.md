@@ -138,39 +138,31 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 # Structure 
 
-SOONERBOOMER-TOKEN/
-├── contracts/                        # Solidity smart contracts
+soonerboomer-dapp/
+│
+├── contracts/                   # Solidity smart contracts
 │   ├── AllowlistClaim.sol
 │   ├── MerkleClaim.sol
 │   └── SoonerBoomerToken.sol
 │
-├── scripts/                          # Deployment & interaction scripts (Hardhat)
+├── ignition/modules/
+│   └── Lock.js
+│
+├── scripts/                     # Deployment & utility scripts
+│   ├── add-to-allowlist.js
+│   ├── build-merkle.js
+│   ├── Check-allowlist.js
+│   ├── check-eligibility.js
+│   ├── claim-from-merkle.js
+│   ├── claim-tokens.js
 │   ├── deploy.js
 │   ├── deploy-allowlist.js
 │   ├── deploy-merkle.js
-│   ├── fund-merkle.js
-│   ├── add-to-allowlist.js
-│   ├── build-merkle.js
-│   ├── claim-tokens.js
-│   ├── claim-from-merkle.js
-│   ├── check-eligibility.js
-│   └── Check-allowlist.js
+│   └── fund-merkle.js
 │
-├── test/                             # Test folder (optional)
-│
-├── .env                              # Environment variables (private key, RPC URL)
-├── .gitignore
-├── allowlist.json                    # Addresses eligible for allowlist claim
-├── proofs.json                       # Merkle proofs for claim validation
-├── auto-commit.sh                    # Git helper script for fast commits
-├── hardhat.config.js                 # Hardhat configuration
-├── package.json
-├── package-lock.json
-├── README.md
-│
-├── soonerboomer-ui/                 # Frontend React application
+├── soonerboomer-ui/            # Frontend (React + Vite + Tailwind)
 │   ├── public/
-│   ├── node_modules/
+│   │   └── vite.svg
 │   ├── src/
 │   │   ├── assets/
 │   │   │   ├── react.svg
@@ -180,13 +172,25 @@ SOONERBOOMER-TOKEN/
 │   │   ├── index.css
 │   │   ├── main.jsx
 │   │   └── proofs.json
+│   ├── .gitignore
+│   ├── eslint.config.js
 │   ├── index.html
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── tailwind.config.js
 │   ├── postcss.config.js
-│   ├── eslint.config.js
-│   └── README-Fornt end.md
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── README- Fornt end.md
+│
+├── test/
+│   └── Lock.js
+│
+├── .env
+├── allowlist.json
+├── auto-commit.sh
+├── hardhat.config.js
+├── proofs.json
+├── README.md
 
 ## License
 
