@@ -138,37 +138,37 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 # Structure 
 
----SOONERBOOMER-TOKEN/
-├── contracts/                     # Solidity smart contracts
+SOONERBOOMER-TOKEN/
+├── contracts/                        # Solidity smart contracts
 │   ├── AllowlistClaim.sol
 │   ├── MerkleClaim.sol
 │   └── SoonerBoomerToken.sol
 │
-├── scripts/                       # Hardhat deployment & interaction scripts
-│   ├── add-to-allowlist.js
-│   ├── build-merkle.js
-│   ├── Check-allowlist.js
-│   ├── check-eligibility.js
-│   ├── claim-from-merkle.js
-│   ├── claim-tokens.js
+├── scripts/                          # Deployment & interaction scripts (Hardhat)
+│   ├── deploy.js
 │   ├── deploy-allowlist.js
 │   ├── deploy-merkle.js
-│   ├── deploy.js
-│   └── fund-merkle.js
+│   ├── fund-merkle.js
+│   ├── add-to-allowlist.js
+│   ├── build-merkle.js
+│   ├── claim-tokens.js
+│   ├── claim-from-merkle.js
+│   ├── check-eligibility.js
+│   └── Check-allowlist.js
 │
-├── test/                          # Test folder (if applicable)
+├── test/                             # Test folder (optional)
 │
-├── .env                           # Environment variables (Infura key, private key, etc.)
+├── .env                              # Environment variables (private key, RPC URL)
 ├── .gitignore
-├── allowlist.json                 # JSON file for allowlist addresses
-├── proofs.json                    # Generated Merkle proofs
-├── auto-commit.sh                 # Shell script for Git automation
-├── hardhat.config.js              # Hardhat configuration file
+├── allowlist.json                    # Addresses eligible for allowlist claim
+├── proofs.json                       # Merkle proofs for claim validation
+├── auto-commit.sh                    # Git helper script for fast commits
+├── hardhat.config.js                 # Hardhat configuration
 ├── package.json
 ├── package-lock.json
 ├── README.md
 │
-├── soonerboomer-ui/              # Frontend application
+├── soonerboomer-ui/                 # Frontend React application
 │   ├── public/
 │   ├── node_modules/
 │   ├── src/
@@ -180,15 +180,13 @@ Then open: [http://localhost:5173](http://localhost:5173)
 │   │   ├── index.css
 │   │   ├── main.jsx
 │   │   └── proofs.json
-│   ├── .gitignore
 │   ├── index.html
-│   ├── README-Fornt end.md
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── tailwind.config.js
 │   ├── postcss.config.js
-│   └── eslint.config.js
-
+│   ├── eslint.config.js
+│   └── README-Fornt end.md
 
 ## License
 
