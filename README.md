@@ -135,7 +135,60 @@ Then open: [http://localhost:5173](http://localhost:5173)
 * [Sepolia Etherscan](https://sepolia.etherscan.io)
 * [MetaMask](https://metamask.io)
 
----
+
+# Structure 
+
+---SOONERBOOMER-TOKEN/
+├── contracts/                     # Solidity smart contracts
+│   ├── AllowlistClaim.sol
+│   ├── MerkleClaim.sol
+│   └── SoonerBoomerToken.sol
+│
+├── scripts/                       # Hardhat deployment & interaction scripts
+│   ├── add-to-allowlist.js
+│   ├── build-merkle.js
+│   ├── Check-allowlist.js
+│   ├── check-eligibility.js
+│   ├── claim-from-merkle.js
+│   ├── claim-tokens.js
+│   ├── deploy-allowlist.js
+│   ├── deploy-merkle.js
+│   ├── deploy.js
+│   └── fund-merkle.js
+│
+├── test/                          # Test folder (if applicable)
+│
+├── .env                           # Environment variables (Infura key, private key, etc.)
+├── .gitignore
+├── allowlist.json                 # JSON file for allowlist addresses
+├── proofs.json                    # Generated Merkle proofs
+├── auto-commit.sh                 # Shell script for Git automation
+├── hardhat.config.js              # Hardhat configuration file
+├── package.json
+├── package-lock.json
+├── README.md
+│
+├── soonerboomer-ui/              # Frontend application
+│   ├── public/
+│   ├── node_modules/
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── react.svg
+│   │   │   └── token-logo.png
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   └── proofs.json
+│   ├── .gitignore
+│   ├── index.html
+│   ├── README-Fornt end.md
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   └── eslint.config.js
+
 
 ## License
 
