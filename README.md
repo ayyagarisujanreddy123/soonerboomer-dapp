@@ -15,6 +15,64 @@ SoonerBoomer+ is a decentralized application (dApp) developed on the Ethereum Se
 
 ---
 
+## Repository Structure 
+<pre> 
+soonerboomer-dapp/
+│
+├── contracts/                   # Solidity smart contracts
+│   ├── AllowlistClaim.sol
+│   ├── MerkleClaim.sol
+│   └── SoonerBoomerToken.sol
+│
+├── ignition/modules/
+│   └── Lock.js
+│
+├── scripts/                     # Deployment & utility scripts
+│   ├── add-to-allowlist.js
+│   ├── build-merkle.js
+│   ├── Check-allowlist.js
+│   ├── check-eligibility.js
+│   ├── claim-from-merkle.js
+│   ├── claim-tokens.js
+│   ├── deploy.js
+│   ├── deploy-allowlist.js
+│   ├── deploy-merkle.js
+│   └── fund-merkle.js
+│
+├── soonerboomer-ui/            # Frontend (React + Vite + Tailwind)
+│   ├── public/
+│   │   └── vite.svg
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── react.svg
+│   │   │   └── token-logo.png
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   └── proofs.json
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── README- Fornt end.md
+│
+├── test/
+│   └── Lock.js
+│
+├── .env
+├── allowlist.json
+├── auto-commit.sh
+├── hardhat.config.js
+├── proofs.json
+├── README.md
+</pre>
+---
+
 ## Getting Started
 
 ### Prerequisites
@@ -131,64 +189,6 @@ Then open: [http://localhost:5173](http://localhost:5173)
 * [Sepolia Etherscan](https://sepolia.etherscan.io)
 * [MetaMask](https://metamask.io)
 
----
-
-## Repository Structure 
-<pre> 
-soonerboomer-dapp/
-│
-├── contracts/                   # Solidity smart contracts
-│   ├── AllowlistClaim.sol
-│   ├── MerkleClaim.sol
-│   └── SoonerBoomerToken.sol
-│
-├── ignition/modules/
-│   └── Lock.js
-│
-├── scripts/                     # Deployment & utility scripts
-│   ├── add-to-allowlist.js
-│   ├── build-merkle.js
-│   ├── Check-allowlist.js
-│   ├── check-eligibility.js
-│   ├── claim-from-merkle.js
-│   ├── claim-tokens.js
-│   ├── deploy.js
-│   ├── deploy-allowlist.js
-│   ├── deploy-merkle.js
-│   └── fund-merkle.js
-│
-├── soonerboomer-ui/            # Frontend (React + Vite + Tailwind)
-│   ├── public/
-│   │   └── vite.svg
-│   ├── src/
-│   │   ├── assets/
-│   │   │   ├── react.svg
-│   │   │   └── token-logo.png
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   ├── index.css
-│   │   ├── main.jsx
-│   │   └── proofs.json
-│   ├── .gitignore
-│   ├── eslint.config.js
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── postcss.config.js
-│   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── README- Fornt end.md
-│
-├── test/
-│   └── Lock.js
-│
-├── .env
-├── allowlist.json
-├── auto-commit.sh
-├── hardhat.config.js
-├── proofs.json
-├── README.md
-</pre>
 ---
  
 ## License
