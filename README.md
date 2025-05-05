@@ -138,6 +138,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 
 # Structure 
 
+<pre> ```bash
 soonerboomer-dapp/
 │
 ├── contracts/                   # Solidity smart contracts
@@ -191,7 +192,8 @@ soonerboomer-dapp/
 ├── hardhat.config.js
 ├── proofs.json
 ├── README.md
-
+```</pre>
+ 
 ## License
 
 MIT License © 2025 Sujan Reddy Ayyagari
