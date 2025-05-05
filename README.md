@@ -2,8 +2,6 @@
 
 SoonerBoomer+ is a decentralized application (dApp) developed on the Ethereum Sepolia testnet that demonstrates secure, structured token distribution for university-level engagement systems. Inspired by the University of Oklahoma, it combines blockchain-based smart contracts with an interactive React-based frontend to simulate educational incentive mechanisms using ERC-20 tokens.
 
---
-
 ## Key Features
 
 * ERC-20 token: SoonerBoomer (SBMR) deployed on Sepolia
@@ -15,7 +13,7 @@ SoonerBoomer+ is a decentralized application (dApp) developed on the Ethereum Se
 * Fully responsive React UI with MetaMask integration
 * Smart contract deployment and verification using Hardhat
 
---
+---
 
 ## Getting Started
 
@@ -68,7 +66,7 @@ node scripts/build-merkle.js
 npx hardhat run scripts/fund-merkle.js --network sepolia
 ```
 
---
+---
 
 ## Contracts
 
@@ -78,7 +76,7 @@ npx hardhat run scripts/fund-merkle.js --network sepolia
 | AllowlistClaim | `0x514D5613B7927FC8F27Bc353602e335C203868a1` | Claim 1000 SBMR if allowlisted       |
 | MerkleClaim    | `0x7edD1b58f191122a134EEAD162B992bA36808a81` | Claim using Merkle proof if eligible |
 
---
+---
 
 ## Technologies Used
 
@@ -92,7 +90,7 @@ npx hardhat run scripts/fund-merkle.js --network sepolia
 * Alchemy/Infura (Sepolia RPC)
 * Etherscan (verification and analytics)
 
---
+---
 
 ## Frontend Instructions
 
@@ -112,7 +110,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 * Token claim via chosen method
 * Status display and transaction links
 
---
+---
 
 ## Future Work
 
@@ -122,7 +120,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 * Integrate with LMS (e.g., Canvas) for event-driven incentives
 * Add zero-knowledge proof (ZKP) support for private eligibility
 
---
+---
 
 ## Useful Links
 
@@ -133,7 +131,7 @@ Then open: [http://localhost:5173](http://localhost:5173)
 * [Sepolia Etherscan](https://sepolia.etherscan.io)
 * [MetaMask](https://metamask.io)
 
---
+---
 
 ## Repository Structure 
 <pre> 
@@ -191,23 +189,21 @@ soonerboomer-dapp/
 ├── proofs.json
 ├── README.md
 </pre>
---
+---
  
 ## License
 
 MIT License © 2025 Sujan Reddy Ayyagari
 
---
+---
 
 ## Presentation Video Link
 
 <https://drive.google.com/file/d/1Qf_8V-tbW9ojPP_HcqT-Cj_-uSuE17Nz/view?usp=drivesdk>
 
---
+---
 
 ## Team
 
 * Sujan Reddy Ayyagari - sujan.reddy.ayyagari-1@ou.edu
 * Surya Prabhav Gurram - surya.prabhav.gurram-1@ou.edu
-
---
